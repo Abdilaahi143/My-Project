@@ -101,9 +101,27 @@ function viewBooks() {
         console.log(`Title: ${book.title}`);
         console.log(`Author: ${book.author}`);
         console.log(`Category: ${book.category}`);
-        mainMenu();
       });
+      mainMenu();
     }
+}
+
+function updateBooks(){
+    const library = loadLibraryData(); // Load data directly here
+    if (library.length === 0) {
+      console.log("No books in the library.");
+    } else {
+      console.log("\nLibrary contents:");
+      library.forEach((book, index) => {
+        console.log(`\nBook ${index + 1}:`);
+        console.log(`Title: ${book.title}`);
+        console.log(`Author: ${book.author}`);
+        console.log(`Category: ${book.category}`);
+      });
+    rl.question(`Enter the number of the book you want to update: `, function(bookNumber){
+        bookIndex = parseInt(bookNumber) -1;
+        if(bookIndex )
+    });
 }
 
 
