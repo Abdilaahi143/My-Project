@@ -107,7 +107,7 @@ function viewBooks() {
 }
 
 function updateBooks(){
-    const library = loadLibraryData(); // Load data directly here
+    let library = loadLibraryData(); // Load data directly here
     if (library.length === 0) {
       console.log("No books in the library.");
     } else {
@@ -120,8 +120,23 @@ function updateBooks(){
       });
     rl.question(`Enter the number of the book you want to update: `, function(bookNumber){
         bookIndex = parseInt(bookNumber) -1;
-        if(bookIndex )
+        if(bookIndex => 0 && bookIndex < library.length){
+          let selectedBook = library[bookIndex];
+          rl.question("Enter the new title: ", (newTitle)=>{
+            rl.question("Enter the new uothor's name: ", (newOuthername)=>{
+              rl.question("Enter the new Category: ", (newCategory)=>{
+                selectedBook.title = newTitle || selectedBook.title;
+                selectedBook.author = newOuthername || selectedBook.author;
+                selectedBook.category = newCategory || selectedBook.category;
+                saveLibraryData(library);
+                console.log("Book Updated Successfully.");
+                mainMenu();
+              });
+            });
+          });
+        }
     });
+}
 }
 
 
